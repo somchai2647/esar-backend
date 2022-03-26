@@ -4,6 +4,7 @@ import auth from './auth'
 import general from './general'
 import information from './information'
 import group from './group'
+import assessment from './assessment'
 
 const router = new Router()
 
@@ -35,5 +36,6 @@ router.use('/auth', auth)
 router.use('/generals', general)
 router.use('/information', information)
 router.use('/groups', group)
+router.use('/asses', assessment)
 
 export default router
