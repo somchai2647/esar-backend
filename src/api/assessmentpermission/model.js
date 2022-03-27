@@ -1,10 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
-const groupSchema = new Schema({
-  name: {
+const assessmentpermissionSchema = new Schema({
+  assesID: {
     type: String
   },
-  type: {
+  groupID: {
     type: String
   }
 }, {
@@ -15,15 +15,15 @@ const groupSchema = new Schema({
   }
 })
 
-groupSchema.methods = {
-  view(full) {
+assessmentpermissionSchema.methods = {
+  view (full) {
     const view = {
       // simple view
       id: this.id,
-      name: this.name,
-      type: this.type,
+      assesID: this.assesID,
+      groupID: this.groupID,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
+      updatedAt: this.updatedAt
     }
 
     return full ? {
@@ -33,7 +33,7 @@ groupSchema.methods = {
   }
 }
 
-const model = mongoose.model('Group', groupSchema)
+const model = mongoose.model('Assessmentpermission', assessmentpermissionSchema)
 
 export const schema = model.schema
 export default model

@@ -7,14 +7,14 @@ import { schema } from './model'
 export Assessment, { schema } from './model'
 
 const router = new Router()
-const { priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows } = schema.tree
+const { priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, fields } = schema.tree
 
 /**
  * @api {post} /asses Create assessment
  * @apiName CreateAssessment
  * @apiGroup Assessment
  * @apiPermission master
- * @apiParam {String} access_token master access token.
+ * @apiParam {String} access_token admin access token.
  * @apiParam priority Assessment's priority.
  * @apiParam year Assessment's year.
  * @apiParam title Assessment's title.
@@ -31,9 +31,10 @@ const { priority, year, title, description, descriptionHTML, status, type, url, 
  * @apiError 404 Assessment not found.
  * @apiError 401 master access only.
  */
+
 router.post('/',
-  master(),
-  body({ priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows }),
+  token({ required: true, roles: ['admin'] }),
+  body({ priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, fields }),
   create)
 
 /**
@@ -48,7 +49,7 @@ router.post('/',
  * @apiError 401 admin access only.
  */
 router.get('/',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin','user'] }),
   query(),
   index)
 
@@ -64,7 +65,7 @@ router.get('/',
  * @apiError 401 admin access only.
  */
 router.get('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin','user'] }),
   show)
 
 /**
@@ -91,7 +92,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows }),
+  body({ priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, fields }),
   update)
 
 /**

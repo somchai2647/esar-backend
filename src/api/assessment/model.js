@@ -33,7 +33,24 @@ const assessmentSchema = new Schema({
   },
   countrows: {
     type: Boolean
-  }
+  },
+  fields: [{
+    fieldsId: {
+      type: Schema.Types.ObjectId
+    },
+    title: {
+      type: Schema.Types.String
+    },
+    variable: {
+      type: Schema.Types.String,
+      default: "-"
+    },
+    isReadOnly: {
+      type: Schema.Types.Boolean
+    }
+  }]
+
+
 }, {
   timestamps: true,
   toJSON: {
@@ -43,7 +60,7 @@ const assessmentSchema = new Schema({
 })
 
 assessmentSchema.methods = {
-  view (full) {
+  view(full) {
     const view = {
       // simple view
       id: this.id,
@@ -58,6 +75,7 @@ assessmentSchema.methods = {
       formula: this.formula,
       aggregate: this.aggregate,
       countrows: this.countrows,
+      fields: this.fields,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

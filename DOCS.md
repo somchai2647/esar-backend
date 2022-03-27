@@ -2,8 +2,21 @@
 
 
 
+- [Assessment](#assessment)
+	- [Create assessment](#create-assessment)
+	- [Delete assessment](#delete-assessment)
+	- [Retrieve assessment](#retrieve-assessment)
+	- [Retrieve assessments](#retrieve-assessments)
+	- [Update assessment](#update-assessment)
+	
 - [Auth](#auth)
 	- [Authenticate](#authenticate)
+	
+- [Fields](#fields)
+	- [Create fields](#create-fields)
+	- [Delete fields](#delete-fields)
+	- [Retrieve fields](#retrieve-fields)
+	- [Update fields](#update-fields)
 	
 - [General](#general)
 	- [Create general](#create-general)
@@ -36,6 +49,100 @@
 	
 
 
+# Assessment
+
+## Create assessment
+
+
+
+	POST /asses
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| priority			| 			|  <p>Assessment's priority.</p>							|
+| year			| 			|  <p>Assessment's year.</p>							|
+| title			| 			|  <p>Assessment's title.</p>							|
+| description			| 			|  <p>Assessment's description.</p>							|
+| descriptionHTML			| 			|  <p>Assessment's descriptionHTML.</p>							|
+| status			| 			|  <p>Assessment's status.</p>							|
+| type			| 			|  <p>Assessment's type.</p>							|
+| url			| 			|  <p>Assessment's url.</p>							|
+| formula			| 			|  <p>Assessment's formula.</p>							|
+| aggregate			| 			|  <p>Assessment's aggregate.</p>							|
+| countrows			| 			|  <p>Assessment's countrows.</p>							|
+
+## Delete assessment
+
+
+
+	DELETE /asses/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve assessment
+
+
+
+	GET /asses/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve assessments
+
+
+
+	GET /asses
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update assessment
+
+
+
+	PUT /asses/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| priority			| 			|  <p>Assessment's priority.</p>							|
+| year			| 			|  <p>Assessment's year.</p>							|
+| title			| 			|  <p>Assessment's title.</p>							|
+| description			| 			|  <p>Assessment's description.</p>							|
+| descriptionHTML			| 			|  <p>Assessment's descriptionHTML.</p>							|
+| status			| 			|  <p>Assessment's status.</p>							|
+| type			| 			|  <p>Assessment's type.</p>							|
+| url			| 			|  <p>Assessment's url.</p>							|
+| formula			| 			|  <p>Assessment's formula.</p>							|
+| aggregate			| 			|  <p>Assessment's aggregate.</p>							|
+| countrows			| 			|  <p>Assessment's countrows.</p>							|
+
 # Auth
 
 ## Authenticate
@@ -55,6 +162,73 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>Master access_token.</p>							|
+
+# Fields
+
+## Create fields
+
+
+
+	POST /field
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| assesID			| 			|  <p>Fields's assesID.</p>							|
+| title			| 			|  <p>Fields's title.</p>							|
+| variable			| 			|  <p>Fields's variable.</p>							|
+| isReadOnly			| 			|  <p>Fields's isReadOnly.</p>							|
+
+## Delete fields
+
+
+
+	DELETE /field/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve fields
+
+
+
+	GET /field
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update fields
+
+
+
+	PUT /field/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| assesID			| 			|  <p>Fields's assesID.</p>							|
+| title			| 			|  <p>Fields's title.</p>							|
+| variable			| 			|  <p>Fields's variable.</p>							|
+| isReadOnly			| 			|  <p>Fields's isReadOnly.</p>							|
 
 # General
 

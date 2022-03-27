@@ -6,6 +6,7 @@ import information from './information'
 import group from './group'
 import assessment from './assessment'
 import fields from './fields'
+import assessmentpermission from './assessmentpermission'
 
 const router = new Router()
 
@@ -39,5 +40,6 @@ router.use('/information', information)
 router.use('/groups', group)
 router.use('/asses', assessment)
 router.use('/field', fields)
+router.use('/assespermis', assessmentpermission)
 
 export default router
