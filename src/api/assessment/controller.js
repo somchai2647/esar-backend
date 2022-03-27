@@ -1,22 +1,37 @@
 import { success, notFound } from '../../services/response/'
 import { Assessment } from '.'
+import Assessmentpermission from '../assessmentpermission/model'
 
-export const create = ({ bodymen: { body } }, res, next) => {
-  console.log(body)
+export const create = ({ bodymen: { body }, body: normalbody }, res, next) => {
   Assessment.create(body)
-    .then((assessment) => assessment.view(true))
+    .then(async (assessment) => {
+      let payload = []
+      const permissions = normalbody.Permission
+      permissions.map(groupid => {
+        payload.push({
+          assessment: assessment._id,
+          groupID: groupid
+        })
+      })
+      await Assessmentpermission.insertMany(payload)
+      assessment.view(true)
+
+      return assessment
+    })
     .then(success(res, 201))
     .catch(next)
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Assessment.find(query, select, cursor)
+    .populate()
     .then((assessments) => assessments.map((assessment) => assessment.view()))
     .then(success(res))
     .catch(next)
 
 export const show = ({ params }, res, next) =>
   Assessment.findById(params.id)
+    .populate()
     .then(notFound(res))
     .then((assessment) => assessment ? assessment.view() : null)
     .then(success(res))

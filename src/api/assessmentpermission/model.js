@@ -1,11 +1,13 @@
 import mongoose, { Schema } from 'mongoose'
 
 const assessmentpermissionSchema = new Schema({
-  assesID: {
-    type: String
+  assessment: {
+    type: Schema.Types.ObjectId,
+    ref: 'Assessment'
   },
   groupID: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'Group'
   }
 }, {
   timestamps: true,
@@ -16,11 +18,11 @@ const assessmentpermissionSchema = new Schema({
 })
 
 assessmentpermissionSchema.methods = {
-  view (full) {
+  view(full) {
     const view = {
       // simple view
       id: this.id,
-      assesID: this.assesID,
+      assessment: this.assessment,
       groupID: this.groupID,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt

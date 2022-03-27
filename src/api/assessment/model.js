@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose'
 
 const assessmentSchema = new Schema({
   priority: {
-    type: String
+    type: Number
   },
   year: {
     type: Number
@@ -48,6 +48,10 @@ const assessmentSchema = new Schema({
     isReadOnly: {
       type: Schema.Types.Boolean
     }
+  }],
+  permission: [{
+    type: Schema.Types.ObjectId,
+    ref: "Assessmentpermission"
   }]
 
 
@@ -76,6 +80,7 @@ assessmentSchema.methods = {
       aggregate: this.aggregate,
       countrows: this.countrows,
       fields: this.fields,
+      permission: this.permission,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

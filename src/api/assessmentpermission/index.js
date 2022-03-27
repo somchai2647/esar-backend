@@ -7,7 +7,7 @@ import { schema } from './model'
 export Assessmentpermission, { schema } from './model'
 
 const router = new Router()
-const { assesID, groupID } = schema.tree
+const { assessment, groupID } = schema.tree
 
 /**
  * @api {post} /assespermis Create assessmentpermission
@@ -15,7 +15,7 @@ const { assesID, groupID } = schema.tree
  * @apiGroup Assessmentpermission
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam assesID Assessmentpermission's assesID.
+ * @apiParam assessment Assessmentpermission's assessment.
  * @apiParam groupID Assessmentpermission's groupID.
  * @apiSuccess {Object} assessmentpermission Assessmentpermission's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -24,7 +24,7 @@ const { assesID, groupID } = schema.tree
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ assesID, groupID }),
+  body({ assessment, groupID }),
   create)
 
 /**
@@ -54,7 +54,7 @@ router.get('/',
  * @apiError 404 Assessmentpermission not found.
  * @apiError 401 user access only.
  */
-router.get('/:id',
+router.get('/:year/:id',
   token({ required: true }),
   show)
 
@@ -64,7 +64,7 @@ router.get('/:id',
  * @apiGroup Assessmentpermission
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam assesID Assessmentpermission's assesID.
+ * @apiParam assessment Assessmentpermission's assessment.
  * @apiParam groupID Assessmentpermission's groupID.
  * @apiSuccess {Object} assessmentpermission Assessmentpermission's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -73,7 +73,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ assesID, groupID }),
+  body({ assessment, groupID }),
   update)
 
 /**

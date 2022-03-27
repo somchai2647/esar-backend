@@ -9,6 +9,13 @@
 	- [Retrieve assessments](#retrieve-assessments)
 	- [Update assessment](#update-assessment)
 	
+- [Assessmentpermission](#assessmentpermission)
+	- [Create assessmentpermission](#create-assessmentpermission)
+	- [Delete assessmentpermission](#delete-assessmentpermission)
+	- [Retrieve assessmentpermission](#retrieve-assessmentpermission)
+	- [Retrieve assessmentpermissions](#retrieve-assessmentpermissions)
+	- [Update assessmentpermission](#update-assessmentpermission)
+	
 - [Auth](#auth)
 	- [Authenticate](#authenticate)
 	
@@ -62,7 +69,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>master access token.</p>							|
+| access_token			| String			|  <p>admin access token.</p>							|
 | priority			| 			|  <p>Assessment's priority.</p>							|
 | year			| 			|  <p>Assessment's year.</p>							|
 | title			| 			|  <p>Assessment's title.</p>							|
@@ -142,6 +149,82 @@
 | formula			| 			|  <p>Assessment's formula.</p>							|
 | aggregate			| 			|  <p>Assessment's aggregate.</p>							|
 | countrows			| 			|  <p>Assessment's countrows.</p>							|
+
+# Assessmentpermission
+
+## Create assessmentpermission
+
+
+
+	POST /assespermis
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| assesID			| 			|  <p>Assessmentpermission's assesID.</p>							|
+| groupID			| 			|  <p>Assessmentpermission's groupID.</p>							|
+
+## Delete assessmentpermission
+
+
+
+	DELETE /assespermis/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve assessmentpermission
+
+
+
+	GET /assespermis/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>user access token.</p>							|
+
+## Retrieve assessmentpermissions
+
+
+
+	GET /assespermis
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>user access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update assessmentpermission
+
+
+
+	PUT /assespermis/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| assesID			| 			|  <p>Assessmentpermission's assesID.</p>							|
+| groupID			| 			|  <p>Assessmentpermission's groupID.</p>							|
 
 # Auth
 

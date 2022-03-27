@@ -32,6 +32,10 @@ const { priority, year, title, description, descriptionHTML, status, type, url, 
  * @apiError 401 master access only.
  */
 
+const test = (a) => {
+  console.log(a)
+}
+
 router.post('/',
   token({ required: true, roles: ['admin'] }),
   body({ priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, fields }),
@@ -49,7 +53,7 @@ router.post('/',
  * @apiError 401 admin access only.
  */
 router.get('/',
-  token({ required: true, roles: ['admin','user'] }),
+  token({ required: true, roles: ['admin', 'user'] }),
   query(),
   index)
 
@@ -65,7 +69,7 @@ router.get('/',
  * @apiError 401 admin access only.
  */
 router.get('/:id',
-  token({ required: true, roles: ['admin','user'] }),
+  token({ required: true, roles: ['admin', 'user'] }),
   show)
 
 /**
