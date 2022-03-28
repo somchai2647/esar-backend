@@ -16,7 +16,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 
 export const show = ({ params }, res, next) => {
   Assessmentpermission.find({ groupID: params.id })
-    .populate({ path: "assessment" })
+    .populate("assessment")
     .then(notFound(res))
     .then((assessmentpermission) => {
       let assessment = []

@@ -37,7 +37,8 @@ const userSchema = new Schema({
     default: 'user'
   },
   group: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "Group"
   },
   picture: {
     type: String,
@@ -77,7 +78,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view(full) {
     const view = {}
-    let fields = ['id', 'name', 'picture', 'role']
+    let fields = ['id', 'name', 'picture', 'role', 'group']
 
     if (full) {
       fields = [...fields, 'username', 'createdAt']
