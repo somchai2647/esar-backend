@@ -45,9 +45,14 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const destroy = ({ params }, res, next) =>
+export const destroy = ({ params }, res, next) => {
   Assessment.findById(params.id)
     .then(notFound(res))
-    .then((assessment) => assessment ? assessment.remove() : null)
+    .then(async (assessment) => {
+      await Assessmentpermission.deleteMany({ assessment: { $eq: params.id } })
+      return assessment ? assessment.remove() : null
+
+    })
     .then(success(res, 204))
     .catch(next)
+}
