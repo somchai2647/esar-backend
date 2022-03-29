@@ -34,6 +34,10 @@ const assessmentSchema = new Schema({
   countrows: {
     type: Boolean
   },
+  weight: {
+    type: Number,
+    default: 0
+  },
   fields: [{
     fieldsId: {
       type: Schema.Types.ObjectId
@@ -75,6 +79,7 @@ assessmentSchema.methods = {
       formula: this.formula,
       aggregate: this.aggregate,
       countrows: this.countrows,
+      weight: this.weight,
       fields: this.fields,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
