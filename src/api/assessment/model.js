@@ -49,10 +49,6 @@ const assessmentSchema = new Schema({
       type: Schema.Types.Boolean
     }
   }],
-  replys: [{
-    type: Schema.Types.ObjectId,
-    ref: "Reply"
-  }]
 
 
 }, {
@@ -80,7 +76,6 @@ assessmentSchema.methods = {
       aggregate: this.aggregate,
       countrows: this.countrows,
       fields: this.fields,
-      replys: this.replys,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
