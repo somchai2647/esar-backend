@@ -49,9 +49,9 @@ const assessmentSchema = new Schema({
       type: Schema.Types.Boolean
     }
   }],
-  permission: [{
+  replys: [{
     type: Schema.Types.ObjectId,
-    ref: "Assessmentpermission"
+    ref: "Reply"
   }]
 
 
@@ -80,7 +80,7 @@ assessmentSchema.methods = {
       aggregate: this.aggregate,
       countrows: this.countrows,
       fields: this.fields,
-      permission: this.permission,
+      replys: this.replys,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

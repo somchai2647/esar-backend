@@ -24,14 +24,14 @@ export const create = ({ bodymen: { body }, body: normalbody }, res, next) => {
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Assessment.find(query, select, cursor)
-    .populate()
+    .populate("replys")
     .then((assessments) => assessments.map((assessment) => assessment.view()))
     .then(success(res))
     .catch(next)
 
 export const show = ({ params }, res, next) =>
   Assessment.findById(params.id)
-    .populate()
+    .populate("replys")
     .then(notFound(res))
     .then((assessment) => assessment ? assessment.view() : null)
     .then(success(res))
