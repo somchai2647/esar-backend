@@ -29,10 +29,18 @@ const assessmentSchema = new Schema({
     type: String
   },
   aggregate: {
-    type: Boolean
+    type: Boolean,
+    default: false,
   },
   countrows: {
-    type: Boolean
+    type: Boolean,
+    default: false,
+
+  },
+  analysis:{
+    type: Boolean,
+    default: false,
+
   },
   weight: {
     type: Number,
@@ -78,6 +86,7 @@ assessmentSchema.methods = {
       url: this.url,
       formula: this.formula,
       aggregate: this.aggregate,
+      analysis: this.analysis,
       countrows: this.countrows,
       weight: this.weight,
       fields: this.fields,
