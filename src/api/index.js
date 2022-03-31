@@ -9,6 +9,8 @@ import fields from './fields'
 import assessmentpermission from './assessmentpermission'
 import reply from './reply'
 import assesReply from './assesReply'
+import analysiscommend from './analysiscommend'
+import attach from './attach'
 
 const router = new Router()
 
@@ -45,5 +47,7 @@ router.use('/field', fields)
 router.use('/assespermis', assessmentpermission)
 router.use('/reply', reply)
 router.use('/assesreply', assesReply)
+router.use('/analysis', analysiscommend)
+router.use('/attach', attach)
 
 export default router
