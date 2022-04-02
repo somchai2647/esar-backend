@@ -1,1 +1,1 @@
-web: npm run prod
+web: set NODE_ENV=production && node .

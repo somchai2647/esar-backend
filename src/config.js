@@ -49,7 +49,7 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/backend'
+      uri: process.env.MONGODB_URI || 'mongodb+srv://esar:JAIHRoJ8zoXgOHlh@esar.2wjdn.mongodb.net/esar-production?authSource=admin&replicaSet=atlas-xjqyer-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=trued'
     }
   }
 }
