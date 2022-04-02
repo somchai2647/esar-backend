@@ -4,8 +4,9 @@ import { User } from '.'
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   User.count(query)
     .then(count => User.find(query, select, cursor)
+      .populate("group")
       .then(users => ({
-        rows: users.map((user) => user.view()),
+        rows: users.map((user) => user.view(true)),
         count
       }))
     )
@@ -30,7 +31,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
       console.log(err)
       /* istanbul ignore else */
       if (err.name === 'MongoError' && err.code === 11000) {
-        res.status(409).json({
+        res.status(401).json({
           valid: false,
           param: 'email',
           message: 'email already registered'
