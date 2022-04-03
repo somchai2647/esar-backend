@@ -26,7 +26,7 @@ const userSchema = new Schema({
   },
   tel: {
     type: String,
-    minlength: 10
+    // minlength: 10
   },
   email: {
     type: String,
