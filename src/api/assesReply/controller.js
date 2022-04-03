@@ -23,17 +23,9 @@ export const destroy = ({ params }, res, next) =>
 
 export const showAssesReplybyGroup = async ({ params }, res, next) => {
   try {
-    // let result = []
-    
-    // const Asses = await AssesPer.find({ groupID: ObjectId(params.gid) }).populate({
-    //   path: 'assessment',
-    //   match: { year: { $eq: parseInt(params.year) } },
-    //   // Explicitly exclude `_id`, see http://bit.ly/2aEfTdB
-    // })
-        const Asses = await AssesPer.find({ groupID: ObjectId(params.gid) }).populate("assessment")
+    const Asses = await AssesPer.find({ groupID: ObjectId(params.gid) }).populate("assessment")
     const reply = await ReplyDB.find({ groupID: ObjectId(params.gid) })
     const assessment = await Asses.map(item => item.assessment)
-
 
     res.status(200).json({ assessment, reply })
   } catch (error) {
