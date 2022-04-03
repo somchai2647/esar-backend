@@ -37,7 +37,7 @@ const assessmentSchema = new Schema({
     default: false,
 
   },
-  analysis:{
+  analysis: {
     type: Boolean,
     default: false,
 
@@ -45,6 +45,14 @@ const assessmentSchema = new Schema({
   weight: {
     type: Number,
     default: 0
+  },
+  tableType: {
+    type: Number,
+    default: 1
+  },
+  checkrowbyrow: {
+    type: Boolean,
+    default: false,
   },
   fields: [{
     fieldsId: {
