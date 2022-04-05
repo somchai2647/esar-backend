@@ -7,12 +7,12 @@ import { schema } from './model'
 export Assessment, { schema } from './model'
 
 const router = new Router()
-const { priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, weight, fields, analysis } = schema.tree
+const { priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, weight, fields, analysis, tableType, checkrowbyrow } = schema.tree
 
 
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, weight, fields, analysis }),
+  body({ priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, weight, fields, analysis, tableType, checkrowbyrow }),
   create)
 
 router.get('/',
@@ -26,7 +26,7 @@ router.get('/:id',
 
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, weight, fields, analysis }),
+  body({  priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, weight, fields, analysis, tableType, checkrowbyrow }),
   update)
 
 router.delete('/:id',
