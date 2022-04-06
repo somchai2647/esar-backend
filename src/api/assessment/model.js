@@ -96,6 +96,8 @@ assessmentSchema.methods = {
       aggregate: this.aggregate,
       analysis: this.analysis,
       countrows: this.countrows,
+      checkrowbyrow: this.checkrowbyrow,
+      tableType: this.tableType,
       weight: this.weight,
       fields: this.fields,
       createdAt: this.createdAt,
