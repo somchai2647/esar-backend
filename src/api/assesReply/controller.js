@@ -33,3 +33,14 @@ export const showAssesReplybyGroup = async ({ params }, res, next) => {
   }
 
 }
+
+export const showPerbyAsses = async ({ params }, res, next) => {
+  try {
+    const Asses = await AssesPer.find({ assessment: ObjectId(params.aid) }).populate("groupID")
+
+    res.status(200).json({ Asses })
+  } catch (error) {
+    console.log(error)
+  }
+
+}

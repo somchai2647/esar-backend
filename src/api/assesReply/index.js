@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy, showAssesReplybyGroup } from './controller'
+import { create, index, show, update, destroy, showAssesReplybyGroup, showPerbyAsses } from './controller'
 
 const router = new Router()
 
@@ -87,5 +87,11 @@ router.get('/showARG/:year/:gid',
   token({ required: true }),
   query(),
   showAssesReplybyGroup)
+
+//showPerbyAsses
+router.get('/showPA/:aid',
+  token({ required: true }),
+  query(),
+  showPerbyAsses)
 
 export default router
