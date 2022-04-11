@@ -83,7 +83,7 @@ router.delete('/:id',
 
 //Custom Zone
 //showAssesReplybyGroup
-router.get('/showARG/:year/:gid',
+router.get('/showARG/:gid',
   token({ required: true }),
   query(),
   showAssesReplybyGroup)
