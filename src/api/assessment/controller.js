@@ -51,8 +51,7 @@ export const update = ({ bodymen: { body }, body: normalbody, params }, res, nex
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Assessment.find(query, select, cursor)
-    .populate("replys")
-    .then((assessments) => assessments.map((assessment) => assessment.view()))
+    .then((assessments) => assessments.map((assessment) => assessment.view(true)))
     .then(success(res))
     .catch(next)
 
