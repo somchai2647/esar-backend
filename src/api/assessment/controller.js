@@ -50,7 +50,8 @@ export const update = ({ bodymen: { body }, body: normalbody, params }, res, nex
     .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  Assessment.find(query, select, cursor)
+  Assessment.find(query, select, { limit: 100 })
+    .sort({ priority: 1 })
     .then((assessments) => assessments.map((assessment) => assessment.view(true)))
     .then(success(res))
     .catch(next)
@@ -58,6 +59,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 export const show = ({ params }, res, next) =>
   Assessment.findById(params.id)
     .populate("replys")
+    .sort({ priority: 1 })
     .then(notFound(res))
     .then((assessment) => assessment ? assessment.view() : null)
     .then(success(res))
