@@ -23,7 +23,7 @@ export const destroy = ({ params }, res, next) =>
 
 export const showAssesReplybyGroup = async ({ params }, res, next) => {
   try {
-    const Asses = await AssesPer.find({ groupID: ObjectId(params.gid) }).populate("assessment")
+    const Asses = await AssesPer.find({ groupID: ObjectId(params.gid) }).sort({ priority: 1 }).populate("assessment")
     const reply = await ReplyDB.find({ groupID: ObjectId(params.gid) })
     const assessment = await Asses.map(item => item.assessment)
 
