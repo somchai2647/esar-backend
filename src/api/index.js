@@ -5,12 +5,12 @@ import general from './general'
 import information from './information'
 import group from './group'
 import assessment from './assessment'
-import fields from './fields'
 import assessmentpermission from './assessmentpermission'
 import reply from './reply'
 import assesReply from './assesReply'
 import analysiscommend from './analysiscommend'
 import attach from './attach'
+import collegeaward from './collegeaward'
 
 const router = new Router()
 
@@ -43,11 +43,11 @@ router.use('/generals', general)
 router.use('/information', information)
 router.use('/groups', group)
 router.use('/asses', assessment)
-router.use('/field', fields)
 router.use('/assespermis', assessmentpermission)
 router.use('/reply', reply)
 router.use('/assesreply', assesReply)
 router.use('/analysis', analysiscommend)
 router.use('/attach', attach)
+router.use('/collegeaward', collegeaward)
 
 export default router
