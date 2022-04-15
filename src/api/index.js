@@ -11,6 +11,7 @@ import assesReply from './assesReply'
 import analysiscommend from './analysiscommend'
 import attach from './attach'
 import collegeaward from './collegeaward'
+import teacheraward from './teacheraward'
 
 const router = new Router()
 
@@ -49,5 +50,6 @@ router.use('/assesreply', assesReply)
 router.use('/analysis', analysiscommend)
 router.use('/attach', attach)
 router.use('/collegeaward', collegeaward)
+router.use('/teacheraward', teacheraward)
 
 export default router
