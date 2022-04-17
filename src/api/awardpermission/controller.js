@@ -61,3 +61,12 @@ export const showbyYear = ({ params }, res, next) =>
     .then((awardpermission) => awardpermission ? awardpermission : null)
     .then(success(res))
     .catch(next)
+
+export const checkPermission = ({ params }, res, next) => {
+  Awardpermission.findOne({ groupID: params.gid })
+    .then(notFound(res))
+    .then((awardpermission) => awardpermission ? awardpermission : null)
+    .then(success(res))
+    .catch(next)
+
+}

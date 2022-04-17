@@ -18,6 +18,5 @@ setImmediate(() => {
   })
 })
 
-//test
 
 export default app

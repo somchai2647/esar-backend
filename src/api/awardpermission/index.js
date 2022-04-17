@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy, customCreate,showbyYear } from './controller'
+import { create, index, show, update, destroy, customCreate, showbyYear, checkPermission } from './controller'
 import { schema } from './model'
 export Awardpermission, { schema } from './model'
 
@@ -92,5 +92,10 @@ router.get('/byyear/:year',
   token({ required: true }),
   query(),
   showbyYear)
+
+router.get('/check/:gid',
+  token({ required: true }),
+  query(),
+  checkPermission)
 
 export default router
