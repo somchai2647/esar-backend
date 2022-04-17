@@ -1,16 +1,12 @@
 import mongoose, { Schema } from 'mongoose'
 
-const assessmentpermissionSchema = new Schema({
-  assessment: {
-    type: Schema.Types.ObjectId,
-    ref: 'Assessment'
-  },
+const awardpermissionSchema = new Schema({
   groupID: {
     type: Schema.Types.ObjectId,
     ref: 'Group'
   },
-  type: {
-    type: Schema.Types.String
+  year: {
+    type: Number
   }
 }, {
   timestamps: true,
@@ -20,14 +16,13 @@ const assessmentpermissionSchema = new Schema({
   }
 })
 
-assessmentpermissionSchema.methods = {
+awardpermissionSchema.methods = {
   view(full) {
     const view = {
       // simple view
       id: this.id,
-      assessment: this.assessment,
       groupID: this.groupID,
-      type: this.type,
+      year: this.year,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
@@ -39,7 +34,7 @@ assessmentpermissionSchema.methods = {
   }
 }
 
-const model = mongoose.model('Assessmentpermission', assessmentpermissionSchema)
+const model = mongoose.model('Awardpermission', awardpermissionSchema)
 
 export const schema = model.schema
 export default model

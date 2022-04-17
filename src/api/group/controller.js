@@ -12,6 +12,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Group.count(query)
     .then(count => Group.find(query, select, cursor)
+      .sort({ name: 1 })
       .then((groups) => ({
         count,
         rows: groups.map((group) => group.view())

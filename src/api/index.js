@@ -13,6 +13,7 @@ import attach from './attach'
 import collegeaward from './collegeaward'
 import teacheraward from './teacheraward'
 import studentaward from './studentaward'
+import awardpermission from './awardpermission'
 
 const router = new Router()
 
@@ -53,5 +54,6 @@ router.use('/attach', attach)
 router.use('/collegeaward', collegeaward)
 router.use('/teacheraward', teacheraward)
 router.use('/studentaward', studentaward)
+router.use('/awardpermissions', awardpermission)
 
 export default router
