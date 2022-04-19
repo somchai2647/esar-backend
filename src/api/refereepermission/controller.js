@@ -56,3 +56,11 @@ export const createCustom = async ({ bodymen: { body }, body: normalbody }, res,
     .then(success(res, 201))
     .catch(next)
 }
+
+export const getRefebyUser = async ({ params }, res, next) => {
+  Refereepermission.find({ userID: params.userid })
+    .populate('assessID')
+    .then((refereepermission) => refereepermission)
+    .then(success(res, 201))
+    .catch(next)
+}

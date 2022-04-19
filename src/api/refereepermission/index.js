@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy, createCustom } from './controller'
+import { create, index, show, update, destroy, createCustom, getRefebyUser } from './controller'
 import { schema } from './model'
 export Refereepermission, { schema } from './model'
 
@@ -58,6 +58,10 @@ router.get('/',
 router.get('/:id',
   token({ required: true }),
   show)
+
+router.get('/refe/:userid',
+  token({ required: true }),
+  getRefebyUser)
 
 /**
  * @api {put} /refereepermissions/:id Update refereepermission
