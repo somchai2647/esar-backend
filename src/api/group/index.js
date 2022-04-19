@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, showbyType } from './controller'
 import { schema } from './model'
 export Group, { schema } from './model'
 
@@ -58,6 +58,11 @@ router.get('/',
 router.get('/:id',
   token({ required: true, roles: ['admin'] }),
   show)
+
+router.get('/type/:type',
+  token({ required: true, roles: ['admin'] }),
+  showbyType)
+
 
 /**
  * @api {put} /groups/:id Update group

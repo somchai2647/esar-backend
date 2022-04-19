@@ -25,7 +25,7 @@ export const destroy = ({ params }, res, next) =>
 export const showAssesReplybyGroup = async ({ params }, res, next) => {
   try {
     const Asses = await AssesPer.find({ groupID: ObjectId(params.gid) }).sort({ priority: 1 }).populate("assessment")
-    const reply = await ReplyDB.find({ groupID: ObjectId(params.gid) })
+    const reply = await ReplyDB.find({})
     const assessment = await Asses.map(item => item.assessment)
 
     res.status(200).json({ assessment, reply })
@@ -48,9 +48,9 @@ export const showAssesReplybyYear = async ({ params }, res, next) => {
         },
       },
       {
-        $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$assessment", 0 ] }, "$$ROOT" ] } }
-     },
-     { $project: { assessment: 0 } }
+        $replaceRoot: { newRoot: { $mergeObjects: [{ $arrayElemAt: ["$assessment", 0] }, "$$ROOT"] } }
+      },
+      { $project: { assessment: 0 } }
       // {
       //   $group: {
       //     _id: "$assesID",

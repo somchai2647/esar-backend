@@ -38,10 +38,12 @@ export const update = ({ user, bodymen: { body }, params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const destroy = ({ user, params }, res, next) =>
+export const destroy = ({ user, params }, res, next) =>{
+
   Reply.findById(params.id)
     .then(notFound(res))
     .then(authorOrAdmin(res, user, 'userID'))
     .then((reply) => reply ? reply.remove() : null)
     .then(success(res, 204))
     .catch(next)
+}

@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create, update, updatePassword, destroy } from './controller'
+import { index, showMe, show, create, update, updatePassword, destroy, showbyGroupType } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
@@ -36,6 +36,11 @@ router.get('/',
 router.get('/me',
   token({ required: true }),
   showMe)
+
+router.get('/grouptype/:grouptype',
+  token({ required: true }),
+  showbyGroupType)
+
 
 /**
  * @api {get} /users/:id Retrieve user

@@ -20,6 +20,19 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
+export const showbyGroupType = ({ params }, res, next) => {
+  console.log(params.grouptype)
+  User.find()
+    .populate({ path: "group", match: { type: { $eq: params.grouptype } }, select: "_id name type" })
+    .then(notFound(res))
+    .then((users) => {
+      return users.filter(user => user.group !== null)
+    })
+    .then((user) => user ? user : null)
+    .then(success(res))
+    .catch(next)
+}
+
 export const showMe = ({ user }, res) =>
   res.json(user.view(true))
 

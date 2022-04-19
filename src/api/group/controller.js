@@ -12,6 +12,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Group.count(query)
     .then(count => Group.find(query, select, cursor)
+      .limit(100)
       .sort({ name: 1 })
       .then((groups) => ({
         count,
@@ -42,3 +43,11 @@ export const destroy = ({ params }, res, next) =>
     .then((group) => group ? group.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+export const showbyType = ({ params }, res, next) =>
+  Group.find({ type: params.type })
+    .limit(100)
+    .then(notFound(res))
+    .then((group) => group ? group : null)
+    .then(success(res))
+    .catch(next)    
