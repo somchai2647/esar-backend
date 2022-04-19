@@ -11,6 +11,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Refereegroup.find(query, select, cursor)
     .populate("leader","_id name group")
     .populate("users.userid","_id name group")
+    .sort({ createdAt: -1 })
     .then((refereegroups) => refereegroups.map((refereegroup) => refereegroup.view()))
     .then(success(res))
     .catch(next)
