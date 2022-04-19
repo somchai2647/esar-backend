@@ -15,6 +15,7 @@ import teacheraward from './teacheraward'
 import studentaward from './studentaward'
 import awardpermission from './awardpermission'
 import refereegroup from './refereegroup'
+import refereepermission from './refereepermission'
 
 const router = new Router()
 
@@ -57,5 +58,6 @@ router.use('/teacheraward', teacheraward)
 router.use('/studentaward', studentaward)
 router.use('/awardpermissions', awardpermission)
 router.use('/refereegroups', refereegroup)
+router.use('/refereepermissions', refereepermission)
 
 export default router
