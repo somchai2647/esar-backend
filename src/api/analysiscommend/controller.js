@@ -49,9 +49,17 @@ export const getbyAsses = async ({ params }, res, next) => {
     .catch(next)
 }
 
+export const getbyAssesReferee = async ({ params }, res, next) => {
+  Analysiscommend.findOne({ AssesID: params.assesid, isReferee: true })
+    .then(notFound(res))
+    .then((analysiscommend) => analysiscommend ? analysiscommend.view() : null)
+    .then(success(res))
+    .catch(next)
+}
+
 export const addAgency = async ({ user, bodymen: { body } }, res, next) => {
   try {
-    const filter = { AssesID: body.AssesID, GroupID: body.GroupID }
+    const filter = body.isReferee ? { AssesID: body.AssesID, GroupID: body.GroupID, isReferee: true } : { AssesID: body.AssesID, GroupID: body.GroupID }
     const data = await Analysiscommend.findOne(filter)
     if (!data) {
       const analysiscommend = await Analysiscommend.create({ ...body, user })

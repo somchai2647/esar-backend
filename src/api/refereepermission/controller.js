@@ -1,5 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { Refereepermission } from '.'
+import Reply from '../reply/model';
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Refereepermission.create(body)
@@ -58,6 +59,36 @@ export const createCustom = async ({ bodymen: { body }, body: normalbody }, res,
 }
 
 export const getRefebyUser = async ({ params }, res, next) => {
+  try {
+    const assessments = await Refereepermission.find({ userID: params.userid }).populate('assessID')
+    const reply = await Reply.find({})
+
+    Promise.all([assessments, reply]).then((values) => {
+
+      let a = [...values[0]].map((as) => as.assessID)
+
+      res.status(200).json({
+        assessments: a,
+        reply: values[1]
+      })
+
+    })
+
+    // const asses = assessments.map(a => a.assessID)
+    // let payload = []
+
+    // asses.map(async(a, i) => {
+    //   let b = await reply.filter(r => r.assesID == a.id).map((test) => test.reply)
+    //   let asses = { ...a, b }
+    //   payload.push(asses)
+    // })
+
+    // res.status(200).json(payload)
+
+
+  } catch (error) {
+    res.status(400).send(error)
+  }
   Refereepermission.find({ userID: params.userid })
     .populate('assessID')
     .then((refereepermission) => refereepermission)

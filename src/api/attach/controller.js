@@ -10,6 +10,7 @@ export const create = ({ user, bodymen: { body } }, res, next) =>
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Attach.find(query, select, cursor)
     .populate('user')
+    .limit(100)
     .then((attaches) => attaches.map((attach) => attach.view()))
     .then(success(res))
     .catch(next)
@@ -67,6 +68,5 @@ export const addattach = async ({ user, bodymen: { body } }, res, next) => {
     res.status(400).json(error)
     next(error)
   }
-
 
 }

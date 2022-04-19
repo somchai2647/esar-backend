@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy, addattach,getbyAsses } from './controller'
+import { create, index, show, update, destroy, addattach, getbyAsses } from './controller'
 import { schema } from './model'
 export Attach, { schema } from './model'
 
@@ -96,6 +96,7 @@ router.delete('/:id',
 router.get('/getbyAsses/:assesid',
   token({ required: true }),
   getbyAsses)
+
 
 router.post('/addattach',
   token({ required: true }),
