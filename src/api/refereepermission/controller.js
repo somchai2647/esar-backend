@@ -36,6 +36,13 @@ export const destroy = ({ params }, res, next) =>
     .then(success(res, 204))
     .catch(next)
 
+export const showbyuser = ({ params }, res, next) =>
+  Refereepermission.find({ userID: params.userid, year: parseInt(params.year) })
+    .populate('assessID', "title")
+    .then(notFound(res))
+    .then((refereepermission) => refereepermission.map((asses) => asses.assessID))
+    .then(success(res))
+    .catch(next)
 
 export const createCustom = async ({ bodymen: { body }, body: normalbody }, res, next) => {
   const { userid, year, assessments } = normalbody
