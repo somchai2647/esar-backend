@@ -9,12 +9,26 @@ export const create = ({ bodymen: { body } }, res, next) =>
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Refereegroup.find(query, select, cursor)
-    .populate("leader","_id name group")
-    .populate("users.userid","_id name group")
+    .populate("leader", "_id name group")
+    .populate("users.userid", "_id name group")
     .sort({ createdAt: -1 })
     .then((refereegroups) => refereegroups.map((refereegroup) => refereegroup.view()))
     .then(success(res))
     .catch(next)
+
+export const leaderCheck = ({ params }, res, next) => {
+  Refereegroup.findOne({ leader: params.userid })
+    .populate("leader", "_id name group")
+    .populate("users.userid", "_id name group")
+    .sort({ createdAt: -1 })
+    .then(notFound(res))
+    .then((refereegroups) => {
+  
+      return refereegroups
+    })
+    .then(success(res))
+    .catch(next)
+}
 
 export const show = ({ params }, res, next) =>
   Refereegroup.findById(params.id)
