@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy,leaderCheck } from './controller'
+import { create, index, show, update, destroy, leaderCheck } from './controller'
 import { schema } from './model'
 export Refereegroup, { schema } from './model'
 
@@ -57,13 +57,15 @@ router.get('/',
  * @apiError 404 Refereegroup not found.
  * @apiError 401 user access only.
  */
+router.get('/leaderCheck/:userid',
+  token({ required: true }),
+  leaderCheck)
+
+
 router.get('/:id',
   token({ required: true }),
   show)
 
-router.get('/leaderCheck/:userid',
-  token({ required: true }),
-  leaderCheck)
 
 
 /**

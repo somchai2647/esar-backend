@@ -17,13 +17,14 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     .catch(next)
 
 export const leaderCheck = ({ params }, res, next) => {
+
   Refereegroup.findOne({ leader: params.userid })
     .populate("leader", "_id name group")
     .populate("users.userid", "_id name group")
     .sort({ createdAt: -1 })
     .then(notFound(res))
     .then((refereegroups) => {
-  
+
       return refereegroups
     })
     .then(success(res))
