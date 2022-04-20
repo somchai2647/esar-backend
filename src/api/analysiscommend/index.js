@@ -105,7 +105,7 @@ router.get('/getbyasses/:assesid',
   token({ required: true }),
   getbyAssesReferee)
 
-router.get('/getbyAssesAllReferee/all/:assesid',
+router.get('/getbyassesallreferee/all/:assesid',
   token({ required: true }),
   getbyAssesAllReferee)
 
