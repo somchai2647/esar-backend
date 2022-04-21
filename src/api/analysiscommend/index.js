@@ -2,12 +2,12 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy, addAgency, getbyAsses, getbyAssesReferee,getbyAssesAllReferee } from './controller'
+import { create, index, show, update, destroy, addAgency, getbyAsses, getbyAssesReferee, getbyAssesAllReferee } from './controller'
 import { schema } from './model'
 export Analysiscommend, { schema } from './model'
 
 const router = new Router()
-const { isReferee, qualitylevel, prominent, developed, counsel, GroupID, AssesID } = schema.tree
+const { isReferee, qualitylevel, prominent, developed, counsel, GroupID, AssesID, comment } = schema.tree
 
 /**
  * @api {post} /analysis Create analysiscommend
@@ -27,7 +27,7 @@ const { isReferee, qualitylevel, prominent, developed, counsel, GroupID, AssesID
  */
 router.post('/',
   token({ required: true }),
-  body({ isReferee, qualitylevel, prominent, developed, counsel, GroupID, AssesID }),
+  body({ isReferee, qualitylevel, prominent, developed, counsel, GroupID, AssesID, comment }),
   create)
 
 /**
@@ -79,7 +79,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ isReferee, qualitylevel, prominent, developed, counsel, GroupID, AssesID }),
+  body({ isReferee, qualitylevel, prominent, developed, counsel, GroupID, AssesID, comment }),
   update)
 
 /**
@@ -101,7 +101,7 @@ router.get('/getbyasses/:assesid',
   token({ required: true }),
   getbyAsses)
 
-  router.get('/getbyassesreferee/:userid/:assesid',
+router.get('/getbyassesreferee/:userid/:assesid',
   token({ required: true }),
   getbyAssesReferee)
 
@@ -111,7 +111,7 @@ router.get('/getbyassesallreferee/all/:assesid',
 
 router.post('/addagency',
   token({ required: true }),
-  body({ isReferee, qualitylevel, prominent, developed, counsel, GroupID, AssesID }),
+  body({ isReferee, qualitylevel, prominent, developed, counsel, GroupID, AssesID, comment }),
   addAgency)
 
 export default router

@@ -28,6 +28,9 @@ const analysiscommendSchema = new Schema({
   counsel: {
     type: String
   },
+  comment: {
+    type: String
+  },
   GroupID: {
     type: Schema.Types.ObjectId,
     ref: 'Group',
@@ -57,6 +60,7 @@ analysiscommendSchema.methods = {
       prominent: this.prominent,
       developed: this.developed,
       counsel: this.counsel,
+      comment: this.comment,
       GroupID: this.GroupID,
       AssesID: this.AssesID,
       createdAt: this.createdAt,
