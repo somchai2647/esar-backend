@@ -52,7 +52,7 @@ export const getbyAsses = async ({ params }, res, next) => {
 
 export const addattach = async ({ user, bodymen: { body } }, res, next) => {
   try {
-    const filter = { AssesID: body.AssesID, GroupID: body.GroupID }
+    const filter = { AssesID: body.AssesID }
     const attach = await Attach.findOne(filter)
     if (!attach) {
       const inserted = await Attach.create({ ...body, user })
