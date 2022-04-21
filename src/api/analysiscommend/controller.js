@@ -67,6 +67,15 @@ export const getbyAssesAllReferee = async ({ params }, res, next) => {
     .catch(next)
 }
 
+export const getCommentAllReferee = async ({ params }, res, next) => {
+  Analysiscommend.find({ isReferee: true })
+    .populate("user", "name _id")
+    .then(notFound(res))
+    .then((analysiscommend) => analysiscommend ? analysiscommend : null)
+    .then(success(res))
+    .catch(next)
+}
+
 export const addAgency = async ({ user, bodymen: { body } }, res, next) => {
   try {
     const filter = body.isReferee ? { AssesID: body.AssesID, GroupID: body.GroupID, isReferee: true, user } : { AssesID: body.AssesID, GroupID: body.GroupID }

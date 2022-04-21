@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy, addAgency, getbyAsses, getbyAssesReferee, getbyAssesAllReferee } from './controller'
+import { create, index, show, update, destroy, addAgency, getbyAsses, getbyAssesReferee, getCommentAllReferee, getbyAssesAllReferee } from './controller'
 import { schema } from './model'
 export Analysiscommend, { schema } from './model'
 
@@ -108,6 +108,11 @@ router.get('/getbyassesreferee/:userid/:assesid',
 router.get('/getbyassesallreferee/all/:assesid',
   token({ required: true }),
   getbyAssesAllReferee)
+
+router.get('/comments/get',
+  token({ required: true }),
+  getCommentAllReferee
+)
 
 router.post('/addagency',
   token({ required: true }),
