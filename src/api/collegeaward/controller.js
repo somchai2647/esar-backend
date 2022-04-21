@@ -8,7 +8,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
     .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  Collegeaward.find(query, select, cursor)
+  Collegeaward.find(query, select, cursor).limit(500)
     .then((collegeawards) => collegeawards.map((collegeaward) => collegeaward.view()))
     .then(success(res))
     .catch(next)

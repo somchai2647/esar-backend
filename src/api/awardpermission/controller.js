@@ -9,7 +9,7 @@ export const create = ({ bodymen: { body } }, res, next) => {
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  Awardpermission.find(query, select, cursor)
+  Awardpermission.find(query, select, cursor).limit(500)
     .then((awardpermissions) => awardpermissions.map((awardpermission) => awardpermission.view()))
     .then(success(res))
     .catch(next)
