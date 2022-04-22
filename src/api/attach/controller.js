@@ -52,8 +52,20 @@ export const getbyAsses = async ({ params }, res, next) => {
 
 export const addattach = async ({ user, bodymen: { body } }, res, next) => {
   try {
-    const filter = { AssesID: body.AssesID }
-    const attach = await Attach.findOne(filter)
+    var filter = {}
+    var attach = null
+    if (body.type == "agency") {
+      filter = { AssesID: body.AssesID, GroupID: body.GroupID }
+      attach = await Attach.findOne(filter).populate({
+        path: "AssesID",
+        match: { type: { $eq: "agency" } },
+        select: 'name -_id type'
+      })
+    } else {
+      filter = { AssesID: body.AssesID }
+      attach = await Attach.findOne(filter)
+    }
+
     if (!attach) {
       const inserted = await Attach.create({ ...body, user })
       const res = inserted ? attach.view(true) : null
