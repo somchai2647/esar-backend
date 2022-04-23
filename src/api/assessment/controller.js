@@ -1,5 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { Assessment } from '.'
+import Assessment2 from './model';
 import Assessmentpermission from '../assessmentpermission/model'
 
 export const create = ({ bodymen: { body }, body: normalbody }, res, next) => {
@@ -75,4 +76,65 @@ export const destroy = ({ params }, res, next) => {
     })
     .then(success(res, 204))
     .catch(next)
+}
+
+
+//Custom
+
+export const getAsssessmentAdminAgency = async ({ params }, res, next) => {
+  try {
+    const Agency = await Assessment.aggregate([
+      {
+        $match: {
+          type: "agency",
+          year: 2564
+        }
+      },
+      {
+        $sort: { priority: 1 }
+      },
+      {
+        $lookup: {
+          from: "replies",
+          localField: "_id",
+          foreignField: "assesID",
+          as: "replies"
+        }
+      },
+      {
+        $lookup: {
+          from: "attaches",
+          localField: "_id",
+          foreignField: "AssesID",
+          as: "attach"
+        }
+      },
+      {
+        $unwind: {
+          path: "$attach",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $lookup: {
+          from: "qualityassessments",
+          localField: "_id",
+          foreignField: "AssessID",
+          as: "analysis"
+        }
+      },
+      {
+        $unwind: {
+          path: "$analysis",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+
+    ]).limit(500)
+
+    res.send(Agency)
+
+  } catch (error) {
+    res.send(error)
+  }
 }

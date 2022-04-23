@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, getAsssessmentAdminAgency } from './controller'
 import { schema } from './model'
 export Assessment, { schema } from './model'
 
@@ -26,11 +26,17 @@ router.get('/:id',
 
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({  priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, weight, fields, analysis, tableType, checkrowbyrow }),
+  body({ priority, year, title, description, descriptionHTML, status, type, url, formula, aggregate, countrows, weight, fields, analysis, tableType, checkrowbyrow }),
   update)
 
 router.delete('/:id',
   token({ required: true, roles: ['admin'] }),
   destroy)
 
+
+//custom
+router.get("/getadminagency/:year",
+  token({ required: true, roles: ['admin'] }),
+  getAsssessmentAdminAgency
+)
 export default router
