@@ -87,7 +87,7 @@ export const getAsssessmentAdminAgency = async ({ params }, res, next) => {
       {
         $match: {
           type: "agency",
-          year: 2564
+          year: parseInt(params.year)
         }
       },
       {
