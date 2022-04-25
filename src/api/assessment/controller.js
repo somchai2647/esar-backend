@@ -81,6 +81,15 @@ export const destroy = ({ params }, res, next) => {
 
 //Custom
 
+export const getbyYear = ({ params }, res, next) => {
+  Assessment.find({ year: params.year })
+    .sort({ priority: 1 })
+    .then(notFound(res))
+    .then((assessment) => assessment ? assessment : null)
+    .then(success(res))
+    .catch(next)
+}
+
 export const getAsssessmentAdminAgency = async ({ params }, res, next) => {
   try {
     const Agency = await Assessment.aggregate([

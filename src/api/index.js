@@ -17,6 +17,7 @@ import awardpermission from './awardpermission'
 import refereegroup from './refereegroup'
 import refereepermission from './refereepermission'
 import qualityassessment from './qualityassessment'
+import assessmentstandards from './assessmentstandards'
 
 const router = new Router()
 
@@ -61,5 +62,6 @@ router.use('/awardpermissions', awardpermission)
 router.use('/refereegroups', refereegroup)
 router.use('/refereepermissions', refereepermission)
 router.use('/qualiasses', qualityassessment)
+router.use('/standard', assessmentstandards)
 
 export default router
