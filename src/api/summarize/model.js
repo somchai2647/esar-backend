@@ -1,20 +1,21 @@
 import mongoose, { Schema } from 'mongoose'
 
-const assessmentstandardsSchema = new Schema({
+const summarizeSchema = new Schema({
   title: {
+    type: String
+  },
+  description: {
     type: String
   },
   priority: {
     type: Number
   },
-  summarize: {
-    type: Schema.Types.ObjectId,
-    ref: "Summarize"
+  type: {
+    type: String
   },
-  assessmentsides: [{
-    type: Schema.Types.ObjectId,
-    ref: "Assessmentside"
-  }]
+  year: {
+    type: Number
+  }
 }, {
   timestamps: true,
   toJSON: {
@@ -23,15 +24,16 @@ const assessmentstandardsSchema = new Schema({
   }
 })
 
-assessmentstandardsSchema.methods = {
+summarizeSchema.methods = {
   view(full) {
     const view = {
       // simple view
       id: this.id,
       title: this.title,
+      type: this.type,
+      description: this.description,
       priority: this.priority,
-      summarize: this.summarize,
-      assessmentsides: this.assessmentsides,
+      year: this.year,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
@@ -43,7 +45,7 @@ assessmentstandardsSchema.methods = {
   }
 }
 
-const model = mongoose.model('Assessmentstandards', assessmentstandardsSchema)
+const model = mongoose.model('Summarize', summarizeSchema)
 
 export const schema = model.schema
 export default model

@@ -18,6 +18,8 @@ import refereegroup from './refereegroup'
 import refereepermission from './refereepermission'
 import qualityassessment from './qualityassessment'
 import assessmentstandards from './assessmentstandards'
+import assessmentside from './assessmentside'
+import summarize from './summarize'
 
 const router = new Router()
 
@@ -63,5 +65,7 @@ router.use('/refereegroups', refereegroup)
 router.use('/refereepermissions', refereepermission)
 router.use('/qualiasses', qualityassessment)
 router.use('/standard', assessmentstandards)
+router.use('/assesside', assessmentside)
+router.use('/summarize', summarize)
 
 export default router

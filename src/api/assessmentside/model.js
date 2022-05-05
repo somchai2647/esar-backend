@@ -1,19 +1,24 @@
 import mongoose, { Schema } from 'mongoose'
 
-const assessmentstandardsSchema = new Schema({
+const assessmentsideSchema = new Schema({
   title: {
+    type: String
+  },
+  description: {
     type: String
   },
   priority: {
     type: Number
   },
-  summarize: {
-    type: Schema.Types.ObjectId,
-    ref: "Summarize"
+  type: {
+    type: String
   },
-  assessmentsides: [{
+  year: {
+    type: Number
+  },
+  assessments: [{
     type: Schema.Types.ObjectId,
-    ref: "Assessmentside"
+    ref: "Assessment"
   }]
 }, {
   timestamps: true,
@@ -23,15 +28,17 @@ const assessmentstandardsSchema = new Schema({
   }
 })
 
-assessmentstandardsSchema.methods = {
-  view(full) {
+assessmentsideSchema.methods = {
+  view (full) {
     const view = {
       // simple view
       id: this.id,
       title: this.title,
+      description: this.description,
       priority: this.priority,
-      summarize: this.summarize,
-      assessmentsides: this.assessmentsides,
+      type: this.type,
+      year: this.year,
+      assessments: this.assessments,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
@@ -43,7 +50,7 @@ assessmentstandardsSchema.methods = {
   }
 }
 
-const model = mongoose.model('Assessmentstandards', assessmentstandardsSchema)
+const model = mongoose.model('Assessmentside', assessmentsideSchema)
 
 export const schema = model.schema
 export default model

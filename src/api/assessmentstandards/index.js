@@ -2,12 +2,12 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy, getbyYear,getResultbyYear } from './controller'
+import { create, index, show, update, destroy} from './controller'
 import { schema } from './model'
 export Assessmentstandards, { schema } from './model'
 
 const router = new Router()
-const { title, description, year, priority, type, assessments } = schema.tree
+const { title, description, year, priority, type, assessmentsides } = schema.tree
 
 /**
  * @api {post} /standard Create assessmentstandards
@@ -26,7 +26,7 @@ const { title, description, year, priority, type, assessments } = schema.tree
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ title, description, year, priority, type, assessments }),
+  body({ title, description, year, priority, type, assessmentsides }),
   create)
 
 /**
@@ -77,7 +77,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ title, description, year, priority, type, assessments }),
+  body({ title, description, year, priority, type, assessmentsides }),
   update)
 
 /**
@@ -94,14 +94,5 @@ router.delete('/:id',
   token({ required: true, roles: ['admin'] }),
   destroy)
 
-router.get("/getbyYear/:year",
-  token({ required: true, roles: ['admin'] }),
-  getbyYear
-)
-
-router.get("/result/:year",
-  token({ required: true, roles: ['admin'] }),
-  getResultbyYear
-)
 
 export default router
