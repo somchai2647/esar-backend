@@ -147,3 +147,30 @@ export const getAsssessmentAdminAgency = async ({ params }, res, next) => {
     res.send(error)
   }
 }
+
+export const IntegrateAssessment = async ({ bodymen: { body }, body: normalbody, params }, res, next) => {
+  try {
+    const { year, targetyear } = normalbody
+
+    const assess = await Assessment2.find({ year: year })
+      .sort({ priority: 1 }).lean();
+
+    let newObj = assess.map((item) => {
+      delete item["_id"];
+      delete item["createdAt"];
+      delete item["updatedAt"];
+      delete item["__v"];
+      return {
+        ...item,
+        year: parseInt(targetyear)
+      }
+    })
+
+    const newAssess = await Assessment2.insertMany(newObj)
+    // const newAssess = await Assessment2.deleteMany({ year: 2565 })
+    res.send(newAssess)
+
+  } catch (error) {
+    res.send(error)
+  }
+}

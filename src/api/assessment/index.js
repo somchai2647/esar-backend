@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy, getAsssessmentAdminAgency, getbyYear } from './controller'
+import { create, index, show, update, destroy, getAsssessmentAdminAgency, IntegrateAssessment, getbyYear } from './controller'
 import { schema } from './model'
 export Assessment, { schema } from './model'
 
@@ -44,5 +44,11 @@ router.get("/getbyyear/:year",
 router.get("/getadminagency/:year",
   token({ required: true, roles: ['admin'] }),
   getAsssessmentAdminAgency
+)
+
+router.post("/integrate",
+  token({ required: true, roles: ['admin'] }),
+  body(),
+  IntegrateAssessment
 )
 export default router
