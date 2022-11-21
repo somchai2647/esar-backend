@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy, leaderCheck } from './controller'
+import { create, index, show, update, destroy, leaderCheck, getByYear } from './controller'
 import { schema } from './model'
 export Refereegroup, { schema } from './model'
 
@@ -45,6 +45,10 @@ router.get('/',
   token({ required: true, roles: ['admin'] }),
   query(),
   index)
+
+router.get('/:year',
+  token({ required: true, roles: ['admin'] }),
+  getByYear)
 
 /**
  * @api {get} /refereegroups/:id Retrieve refereegroup

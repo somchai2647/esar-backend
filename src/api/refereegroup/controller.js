@@ -16,6 +16,15 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     .then(success(res))
     .catch(next)
 
+export const getByYear = ({ params }, res, next) =>
+  Refereegroup.find({ year: params.year })
+    .populate("leader", "_id name group")
+    .populate("users.userid", "_id name group")
+    .sort({ createdAt: -1 })
+    .then((refereegroups) => refereegroups.map((refereegroup) => refereegroup.view()))
+    .then(success(res))
+    .catch(next)
+
 export const leaderCheck = ({ params }, res, next) => {
 
   Refereegroup.findOne({ leader: params.userid })
