@@ -42,7 +42,7 @@ router.get("/getbyyear/:year",
 )
 
 router.get("/getadminagency/:year",
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin','executive'] }),
   getAsssessmentAdminAgency
 )
 

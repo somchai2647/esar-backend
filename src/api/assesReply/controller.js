@@ -69,8 +69,8 @@ export const showAssesReplybyYear = async ({ params }, res, next) => {
       //     as: "replys"
       //   },
       // },
-    ]).limit(1)
-    res.status(200).json(reply)
+    ])
+    res.status(200).json(reply.filter(item => item.year == parseInt(params.year)))
   } catch (error) {
     console.log(error)
     res.status(400).json(error)

@@ -96,7 +96,7 @@ router.get('/showPA/:aid',
 
 //showAssesReplybyYear
 router.get('/showARY/:year',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin','executive'] }),
   query(),
   showAssesReplybyYear
 )
