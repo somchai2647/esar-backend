@@ -71,6 +71,6 @@
     "request-promise": "^4.2.5"
   },
   "engines": {
-    "node": "16.17.0"
+    "node": "18.12.1"
   }
 }

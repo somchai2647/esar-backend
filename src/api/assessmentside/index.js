@@ -99,17 +99,17 @@ router.delete('/:id',
   destroy)
 
 router.get("/getbyType/:year/:type",
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', "executive"] }),
   getbyType
 )
 
 router.get("/getbyYear/:year",
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', "executive"] }),
   getbyYear
 )
 
 router.get("/result/:year",
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', "executive"] }),
   getResultbyYear
 )
 
