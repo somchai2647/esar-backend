@@ -3,7 +3,7 @@ import { User } from '.'
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   User.count(query)
-    .then(count => User.find(query, select, cursor)
+    .then(count => User.find(query, select, cursor).limit(100)
       .populate("group")
       .then(users => ({
         rows: users.map((user) => user.view(true)),
