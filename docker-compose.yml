@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    environment:
+      - NODE_ENV=production
+      - JWT_SECRET=${JWT_SECRET}
+      - MASTER_KEY=${MASTER_KEY}
+      - MONGODB_URI=${MONGODB_URI}
+    ports:
+      - "2647:8080"
