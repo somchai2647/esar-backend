@@ -67,7 +67,7 @@ export const createCustom = async ({ bodymen: { body }, body: normalbody }, res,
 
 export const getRefebyUser = async ({ params }, res, next) => {
   try {
-    const assessments = await Refereepermission.find({ userID: params.userid }).populate('assessID')
+    const assessments = await Refereepermission.find({ userID: params.userid, year: params.year }).populate('assessID')
     const reply = await Reply.find({})
 
     Promise.all([assessments, reply]).then((values) => {

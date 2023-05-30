@@ -59,7 +59,7 @@ router.get('/:id',
   token({ required: true }),
   show)
 
-router.get('/refe/:userid',
+router.get('/refe/:year/:userid',
   token({ required: true }),
   getRefebyUser)
 
